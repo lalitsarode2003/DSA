@@ -1,3 +1,5 @@
+/* WAP to print sum of n natural no's
+*/
 class RecurtionSum{
 
 	int sum = 0;

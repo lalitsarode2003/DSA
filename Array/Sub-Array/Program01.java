@@ -1,3 +1,8 @@
+/*WAP to print the max sub-array out of the given array such that the sub-array containes the maximum and minimum element of the array
+	Input: arr = {1,2,3,1,3,4,6,4,6,3}
+	Output: 6 
+
+*/
 class SubArray{
 	public static void main(String [] args){
 		int N = 10;

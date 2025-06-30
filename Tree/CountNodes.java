@@ -8,43 +8,27 @@ class Node{
 		left = right = null;
 	}
 }
-class BinaryTree{
-
-	Scanner sc = new Scanner(System.in);
-	Node constructBT(){
-		System.out.println("Enter data for Node");
-		int data = sc.nextInt();
-
-		Node newNode = new Node(data);
-
-		System.out.println("Do you want to add left node for:" + newNode.data);
-		char leftNode = sc.next().charAt(0);
-		if(leftNode == 'Y' || leftNode == 'y'){
-			newNode.left = constructBT();
-		}
+class BinaryTreeCount{
+	
+	int index = -1;
+	Node constructBT(int arrNodes[]){
+		index++;
 		
-		System.out.println("Do you want to add right node for:" + newNode.data);
-		char rightNode = sc.next().charAt(0);
-		if(rightNode == 'Y' || rightNode == 'y'){
-			newNode.right = constructBT();
+		if(arrNodes[index] == -1){
+			return null;
 		}
+
+		Node newNode = new Node(arrNodes[index]);
+
+		newNode.left = constructBT(arrNodes);
+		newNode.right = constructBT(arrNodes);
+
 		return newNode;
 	}
-	int countNodes(Node root){
-		if(root == null){
-			return 0;
-		}
-		int LeftSubTree = countNodes(root.left);
-		int RightSubTree = countNodes(root.right);
-		
-		return LeftSubTree + RightSubTree  + 1;
-
-	}
-/*
 	void preOrderBT(Node root){
 		if(root == null)
 			return;
-		System.out.println(root.data + " ");
+		System.out.print(root.data + " ");
 		preOrderBT(root.left);
 		preOrderBT(root.right);
 	}
@@ -52,7 +36,7 @@ class BinaryTree{
 		if(root == null)
 			return;
 		inOrderBT(root.left);
-		System.out.println(root.data + " ");
+		System.out.print(root.data + " ");
 		inOrderBT(root.right);
 	}
 	void postOrderBT(Node root){
@@ -60,24 +44,38 @@ class BinaryTree{
 			return;
 		postOrderBT(root.left);
 		postOrderBT(root.right);
-		System.out.println(root.data + " ");
+		System.out.print(root.data + " ");
 	}
-*/
+	int countNode(Node root){
+		if(root == null){
+			return 0;
+		}	
+		int LeftSubTree = countNode(root.left);
+		int RightSubTree = countNode(root.right);
+
+		return LeftSubTree + RightSubTree + 1;
+	}	
 	public static void main(String [] lalit){
-		Node root = null;
-		BinaryTree bt = new BinaryTree();
-		root = bt.constructBT();
-		int count = bt.countNodes(root);
-		System.out.println(count);
-/*		
+		int arrNodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+		BinaryTreeCount bt = new BinaryTreeCount();
+		Node root = bt.constructBT(arrNodes);
+
+		
 		System.out.println("Pre Order");
 		bt.preOrderBT(root);
+		
+		System.out.println();
 		System.out.println("In Order");
 		bt.inOrderBT(root);
+		System.out.println();
+		
 		System.out.println("Post Order");
 		bt.postOrderBT(root);
 		
-*/		
+		System.out.println();
+		int count = bt.countNode(root);
+		System.out.println("Total no of nodes are:" + count);
+
 		System.out.println();
 	}
 }

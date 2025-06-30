@@ -17,13 +17,13 @@ class BinaryTree{
 
 		Node newNode = new Node(data);
 
-		System.out.println("Do you ant to add left node for:" + newNode.data);
+		System.out.println("Do you want to add left node for:" + newNode.data);
 		char leftNode = sc.next().charAt(0);
 		if(leftNode == 'Y' || leftNode == 'y'){
 			newNode.left = constructBT();
 		}
 		
-		System.out.println("Do you ant to add right node for:" + newNode.data);
+		System.out.println("Do you want to add right node for:" + newNode.data);
 		char rightNode = sc.next().charAt(0);
 		if(rightNode == 'Y' || rightNode == 'y'){
 			newNode.right = constructBT();
